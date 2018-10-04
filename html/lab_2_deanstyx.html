@@ -1,0 +1,506 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab 2 - Dean Styx - MAT 275 Lab</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-09-14"><meta name="DC.source" content="lab_2_deanstyx.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Lab 2 - Dean Styx - MAT 275 Lab</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Exercise 1</a></li><li><a href="#9">Exercise 2</a></li><li><a href="#11">Exercise 3</a></li><li><a href="#12">Exercise 4</a></li><li><a href="#13">Exercise 5</a></li></ul></div><h2 id="1">Exercise 1</h2><p>Part (a)</p><pre class="codeinput">A = [3,0,-2;5,6,1;-4,3,7];
+B = [4,3,2;1,5,6;10,8,9];
+b =[4;19;16];
+c = [3;2;1];
+d = [5,6,7];
+</pre><p>Part(b)</p><pre class="codeinput">AB = A*B
+BA = B*A
+dB = d*B
+Ac = A*c
+</pre><pre class="codeoutput">
+AB =
+
+    -8    -7   -12
+    36    53    55
+    57    59    73
+
+
+BA =
+
+    19    24     9
+     4    48    45
+    34    75    51
+
+
+dB =
+
+    96   101   109
+
+
+Ac =
+
+     7
+    28
+     1
+
+</pre><p>Part (c)</p><pre class="codeinput">C= [B,c]
+D= [A;d]
+</pre><pre class="codeoutput">
+C =
+
+     4     3     2     3
+     1     5     6     2
+    10     8     9     1
+
+
+D =
+
+     3     0    -2
+     5     6     1
+    -4     3     7
+     5     6     7
+
+</pre><p>Part (d)</p><pre class="codeinput">x = A\b
+</pre><pre class="codeoutput">
+x =
+
+    6.0000
+   -3.0000
+    7.0000
+
+</pre><p>Part (e)</p><pre class="codeinput">B(2,3) = 0
+</pre><pre class="codeoutput">
+B =
+
+     4     3     2
+     1     5     0
+    10     8     9
+
+</pre><p>Part (f)</p><pre class="codeinput">d(2) = 8
+</pre><pre class="codeoutput">
+d =
+
+     5     8     7
+
+</pre><p>Part (g)</p><pre class="codeinput">a = [A(2,:)]
+</pre><pre class="codeoutput">
+a =
+
+     5     6     1
+
+</pre><p>Part (h)</p><pre class="codeinput">B(:,1)=[]
+</pre><pre class="codeoutput">
+B =
+
+     3     2
+     5     0
+     8     9
+
+</pre><h2 id="9">Exercise 2</h2><pre class="codeinput"><span class="comment">% Part (a)</span>
+
+
+<span class="comment">% Display contents of geom_sum M-file.</span>
+<span class="comment">% And call the function with given values on the paper.</span>
+
+type <span class="string">'geom_sum.m'</span>
+
+<span class="comment">% Assign values to input variables.</span>
+r = 1/4;
+a = 8;
+n = 6;
+
+<span class="comment">% Compute geometric sum for specified values of r,a, and n.</span>
+geom_sum(r,a,n)
+</pre><pre class="codeoutput">
+function [ sum ] = geom_sum( r,a,n )
+
+%this sum function will provide an addative sum to the previous sum.
+
+
+%declare local varables/zero values to build upon
+x = 0;
+sum = 0;
+
+
+for i = 0:n
+    x = a*r^(i);
+    
+    sum = x+sum
+    
+
+end
+sum
+
+
+
+sum =
+
+     8
+
+
+sum =
+
+    10
+
+
+sum =
+
+   10.5000
+
+
+sum =
+
+   10.6250
+
+
+sum =
+
+   10.6563
+
+
+sum =
+
+   10.6641
+
+
+sum =
+
+   10.6660
+
+
+sum =
+
+   10.6660
+
+
+ans =
+
+   10.6660
+
+</pre><p>Part (b)</p><pre class="codeinput">sum2( r, a, n)
+
+<span class="comment">%The values are slightly different due to more percise and non-rounding</span>
+<span class="comment">%factor of the sum function.</span>
+</pre><pre class="codeoutput">
+ans =
+
+   10.6641
+
+</pre><h2 id="11">Exercise 3</h2><pre class="codeinput">type(<span class="string">'exercise3'</span>)
+run(<span class="string">'exercise3'</span>)
+</pre><pre class="codeoutput">
+%%Exersice 3 Lab 2
+
+% Part (a)
+
+% Initiate product P.
+p = 1;
+
+% Define starting iteration index.
+m = 2;
+
+% Define stepsize of iteration.
+k = 2;
+
+% Define ending iteration index.
+n = 14;
+
+% Compute product.
+for i = m:k:n 
+    
+    
+     p=i*p;   % muliply P by next element at each iteration (suppress output)
+     
+    
+end
+
+% Display product.
+p
+
+
+%%
+% Part (b)
+b = prod(m:k:n)
+
+p =
+
+      645120
+
+
+b =
+
+      645120
+
+</pre><h2 id="12">Exercise 4</h2><pre class="codeinput">type(<span class="string">'exercise3'</span>)
+run(<span class="string">'exercise3'</span>)
+</pre><pre class="codeoutput">
+%%Exersice 3 Lab 2
+
+% Part (a)
+
+% Initiate product P.
+p = 1;
+
+% Define starting iteration index.
+m = 2;
+
+% Define stepsize of iteration.
+k = 2;
+
+% Define ending iteration index.
+n = 14;
+
+% Compute product.
+for i = m:k:n 
+    
+    
+     p=i*p;   % muliply P by next element at each iteration (suppress output)
+     
+    
+end
+
+% Display product.
+p
+
+
+%%
+% Part (b)
+b = prod(m:k:n)
+
+p =
+
+      645120
+
+
+b =
+
+      645120
+
+</pre><h2 id="13">Exercise 5</h2><pre class="codeinput"><span class="comment">% NOTE: Here, we must create a separate function M-file f that accepts one</span>
+<span class="comment">% input argument, a value of the variable x. You may want to start creating</span>
+<span class="comment">% a new folder for each lab as we will be using f multiple times to define</span>
+<span class="comment">% different functions. Please refer to the example on the last page of the</span>
+<span class="comment">% protocol before attempting this problem.</span>
+
+<span class="comment">% Display contents of function f M-file.</span>
+type <span class="string">'f.m'</span>
+
+<span class="comment">% Evaluate f at the given vaue of x.</span>
+f(-1)
+<span class="comment">% Evaluate f at the given value of x.</span>
+f(0)
+<span class="comment">% Evaluate f at the given value of x.</span>
+f(1)
+<span class="comment">% Evaluate f at the given value of x.</span>
+f(3)
+<span class="comment">% Evaluate f at the given value of x.</span>
+f(6)
+<span class="comment">% Evaluate f at the given value of x.</span>
+f(8)
+</pre><pre class="codeoutput">
+function [ o ] = f( x )
+%o stands for output, x is the input
+if x &lt;= 1
+    o = x/(x+1);
+elseif (1 &lt; x) &amp;&amp; (x&lt;=6)
+    o = exp(x-2);
+else
+    o = sin(x+x^2);
+    
+end
+
+
+end
+
+
+ans =
+
+  -Inf
+
+
+ans =
+
+     0
+
+
+ans =
+
+    0.5000
+
+
+ans =
+
+    2.7183
+
+
+ans =
+
+   54.5982
+
+
+ans =
+
+    0.2538
+
+</pre><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab 2 - Dean Styx - MAT 275 Lab
+
+%% Exercise 1
+% Part (a)
+
+A = [3,0,-2;5,6,1;-4,3,7];
+B = [4,3,2;1,5,6;10,8,9];
+b =[4;19;16];
+c = [3;2;1];
+d = [5,6,7];
+
+
+%% 
+% Part(b)
+AB = A*B
+BA = B*A
+dB = d*B
+Ac = A*c
+%% 
+% Part (c)
+C= [B,c]
+D= [A;d]
+
+%%
+% Part (d)
+x = A\b
+
+%%
+% Part (e)
+B(2,3) = 0
+%%
+% Part (f)
+d(2) = 8
+%% 
+% Part (g)
+a = [A(2,:)]
+%% 
+% Part (h)
+B(:,1)=[]
+
+%% Exercise 2
+
+% Part (a)
+
+
+% Display contents of geom_sum M-file.
+% And call the function with given values on the paper.
+
+type 'geom_sum.m' 
+
+% Assign values to input variables.
+r = 1/4;
+a = 8;
+n = 6; 
+
+% Compute geometric sum for specified values of r,a, and n.
+geom_sum(r,a,n) 
+%%
+% Part (b)
+
+sum2( r, a, n)
+
+%The values are slightly different due to more percise and non-rounding
+%factor of the sum function.
+
+%% Exercise 3
+
+type('exercise3')
+run('exercise3')
+
+%% Exercise 4
+
+type('exercise3')
+run('exercise3')
+
+%% Exercise 5
+
+
+% NOTE: Here, we must create a separate function M-file f that accepts one
+% input argument, a value of the variable x. You may want to start creating
+% a new folder for each lab as we will be using f multiple times to define
+% different functions. Please refer to the example on the last page of the
+% protocol before attempting this problem. 
+
+% Display contents of function f M-file.
+type 'f.m'
+
+% Evaluate f at the given vaue of x.
+f(-1)
+% Evaluate f at the given value of x. 
+f(0)
+% Evaluate f at the given value of x.
+f(1)
+% Evaluate f at the given value of x.
+f(3)
+% Evaluate f at the given value of x.
+f(6)
+% Evaluate f at the given value of x.
+f(8)
+
+##### SOURCE END #####
+--></body></html>

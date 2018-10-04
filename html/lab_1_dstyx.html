@@ -1,0 +1,328 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Lab 1 - Dean Styx - MAT 275</title><meta name="generator" content="MATLAB 9.2"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2018-08-31"><meta name="DC.source" content="lab_1_dstyx.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>Lab 1 - Dean Styx - MAT 275</h1><!--introduction--><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#1">Exercise 1</a></li><li><a href="#3">Exercise 2</a></li><li><a href="#6">Exercise 3</a></li><li><a href="#7">Exercise 4</a></li><li><a href="#8">Exercise 5</a></li><li><a href="#9">Exercise 6</a></li><li><a href="#12">The End!!!</a></li></ul></div><h2 id="1">Exercise 1</h2><pre class="codeinput"><span class="comment">% NOTE: Please suppress output--i.e., use a semicolon ';' at the end of any</span>
+<span class="comment">% commands for which the output is not necessary to answer the question.</span>
+<span class="comment">% Delete these notes before turning in.</span>
+
+<span class="comment">% Define input variable theta as discretized row vector (i.e., array).</span>
+theta =  [0, pi/6, pi/4, (pi)/2, (3*pi)/4, pi,  (5*pi)/3];
+
+<span class="comment">% Define radius.</span>
+r = 4;
+
+<span class="comment">% Define x and y in terms of theta and r.</span>
+x = r*cos(theta);
+y = r*sin(theta);
+
+<span class="comment">% Check that x and y satisfy the equation of a circle.</span>
+
+<span class="keyword">if</span> r == sqrt(x.^2+y.^2)
+    disp(<span class="string">'true'</span>)
+<span class="keyword">else</span>
+    disp(<span class="string">'false'</span>)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">true
+</pre><p>Explain results here. Do x and y satisfy the equation of a circle? Why or why not? How does the vector output at the end confirm your answer? Notice I did not include text in the same line where the double-comment is. What this accomplishes is it does not add a title or create a new section in the table of contents when you publish. Using single % starting in the line after the %% turns the comments black as opposed to green. Yes it does, looking at it mathmatically, the equation makes it so we have a sin squared plus cosine squared which will equal one leaving the square root of x^2+y^2. and as we have learned before, x^2+y^2 = r^2. then the square root of r^2 is just r, proving the equation</p><h2 id="3">Exercise 2</h2><pre class="codeinput"><span class="comment">% Define t-vector.</span>
+t = 2:0.1:20;
+
+<span class="comment">% Define y-vector.</span>
+y = exp(t/20).*sin(t)./(t.^2+1);
+</pre><p>Part (a)</p><pre class="codeinput"><span class="comment">% Plot results (should have 3 plots total).</span>
+figure;
+plot(t,y,<span class="string">'-'</span>)
+title(<span class="string">'Graph 1 - Line'</span>)
+</pre><img vspace="5" hspace="5" src="lab_1_dstyx_01.png" alt=""> <p>Part (b)</p><pre class="codeinput"><span class="comment">% Plot results as data points only and as data points with line.</span>
+figure; <span class="comment">% creates a new figure window for next plot</span>
+plot(t,y,<span class="string">'o'</span>);
+title(<span class="string">'Graph 2 - Os'</span>)
+
+figure; <span class="comment">% creates another figure window</span>
+plot(t,y,<span class="string">'o-'</span>);
+title(<span class="string">'Graph 3 - Os and line'</span>)
+</pre><img vspace="5" hspace="5" src="lab_1_dstyx_02.png" alt=""> <img vspace="5" hspace="5" src="lab_1_dstyx_03.png" alt=""> <h2 id="6">Exercise 3</h2><pre class="codeinput"><span class="comment">% Create t-vector (choose enough elements so that plot is smooth!)</span>
+t = 0:0.1:25;
+
+<span class="comment">% Define x,y,z components in terms of t.</span>
+x = 2*sin(t); y = 2*cos(t); z = 3*t;
+
+<span class="comment">% Plot resuls.</span>
+figure;
+grid <span class="string">on</span>;
+plot3(x,y,z, <span class="string">'black'</span>);
+title(<span class="string">'Graph 4 - Helix'</span>)
+</pre><img vspace="5" hspace="5" src="lab_1_dstyx_04.png" alt=""> <h2 id="7">Exercise 4</h2><pre class="codeinput"><span class="comment">% Define input variable as vector.</span>
+x = -pi:0.01:pi;
+
+<span class="comment">% Define y and z.</span>
+y = sin(x);
+z = x- (x.^3/6);
+
+<span class="comment">% Plot results.</span>
+figure;
+plot(x,y,<span class="string">'r'</span>,x,z,<span class="string">'--'</span>)
+axis <span class="string">tight</span>;
+grid <span class="string">on</span>;
+</pre><img vspace="5" hspace="5" src="lab_1_dstyx_05.png" alt=""> <h2 id="8">Exercise 5</h2><pre class="codeinput"><span class="comment">% NOTE: you must create the M-file ex5.m separately and invoke it here in</span>
+<span class="comment">% your main M-file (main file).</span>
+
+<span class="comment">% Print out the code for your created M-file (do NOT submit M-file</span>
+<span class="comment">% separately).</span>
+type <span class="string">'ex5.m'</span>
+
+<span class="comment">% Run your M-file--i.e., execute the M-file.</span>
+run <span class="string">'ex5.m'</span>
+</pre><pre class="codeoutput">
+x = 0:0.01:6 ; % define the vector x in the interval [0,5]
+y1 = f(x, 0); % compute the solution with C = 0
+y2 = f(x, 50); % compute the solution with C = 50
+y3 = f(x,100); % compute the solution with C = 100
+plot(x,y1, x,y2, '--b', x, y3, 'x') % plot the three solutions with different line-styles
+title('Solution To Differential Equations') % add a title
+legend('C = 0', 'C = 50', 'C= 100') % add a legend
+
+
+function y = f(x,C)
+y = x.^4/4+(2/3)*x.^3+x.^2/2+C; % fill-in with th e expression for the general solution
+end
+</pre><img vspace="5" hspace="5" src="lab_1_dstyx_06.png" alt=""> <h2 id="9">Exercise 6</h2><p>Part (a)</p><pre class="codeinput"><span class="comment">% Define f as  anonymous function.</span>
+f = @(x,y)(y.^2 + (x*exp(y))/(x.^2+1));
+
+<span class="comment">% Evaluate f at the given values of x and y</span>
+
+f(-3,1)
+</pre><pre class="codeoutput">
+ans =
+
+    0.1845
+
+</pre><p>Part (b)</p><pre class="codeinput"><span class="comment">% Clear the function f out of the workspace.</span>
+clear <span class="string">f</span>
+
+<span class="comment">% Print out f.m contents.</span>
+type <span class="string">'f.m'</span>
+
+<span class="comment">% Evaluate f at the given values of x and y</span>
+
+f(-3,1)
+</pre><pre class="codeoutput">
+function [ o ] = f( x, y )
+
+o = x.^2+x.*exp(y)./(y+1);
+
+end
+
+
+ans =
+
+    4.9226
+
+</pre><h2 id="12">The End!!!</h2><p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB&reg; R2017a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% Lab 1 - Dean Styx - MAT 275
+
+%% Exercise 1
+
+% NOTE: Please suppress outputREPLACE_WITH_DASH_DASHi.e., use a semicolon ';' at the end of any
+% commands for which the output is not necessary to answer the question.
+% Delete these notes before turning in.
+
+% Define input variable theta as discretized row vector (i.e., array).
+theta =  [0, pi/6, pi/4, (pi)/2, (3*pi)/4, pi,  (5*pi)/3];
+ 
+% Define radius.
+r = 4;
+ 
+% Define x and y in terms of theta and r.
+x = r*cos(theta);
+y = r*sin(theta);
+
+% Check that x and y satisfy the equation of a circle.
+
+if r == sqrt(x.^2+y.^2)
+    disp('true')
+else
+    disp('false')
+end
+
+
+
+
+%%
+% Explain results here. Do x and y satisfy the equation of a circle? Why or
+% why not? How does the vector output at the end confirm your answer?
+% Notice I did not include text in the same line where the double-comment
+% is. What this accomplishes is it does not add a title or create a new
+% section in the table of contents when you publish. Using single %
+% starting in the line after the %% turns the comments black as opposed to
+% green.
+% Yes it does, looking at it mathmatically, the equation makes it so we
+% have a sin squared plus cosine squared which will equal one leaving the
+% square root of x^2+y^2. and as we have learned before, x^2+y^2 = r^2.
+% then the square root of r^2 is just r, proving the equation
+
+
+%% Exercise 2
+
+% Define t-vector.
+t = 2:0.1:20;
+
+% Define y-vector.
+y = exp(t/20).*sin(t)./(t.^2+1);
+
+%%
+% Part (a)
+
+% Plot results (should have 3 plots total).
+figure;
+plot(t,y,'-')
+title('Graph 1 - Line')
+
+
+%%
+% Part (b)
+
+% Plot results as data points only and as data points with line.
+figure; % creates a new figure window for next plot
+plot(t,y,'o');
+title('Graph 2 - Os')
+
+figure; % creates another figure window
+plot(t,y,'o-');
+title('Graph 3 - Os and line')
+
+%% Exercise 3
+
+% Create t-vector (choose enough elements so that plot is smooth!)
+t = 0:0.1:25;
+
+% Define x,y,z components in terms of t.
+x = 2*sin(t); y = 2*cos(t); z = 3*t;
+
+% Plot resuls.
+figure;
+grid on;
+plot3(x,y,z, 'black');
+title('Graph 4 - Helix')
+
+%% Exercise 4
+
+% Define input variable as vector.
+x = -pi:0.01:pi;
+
+% Define y and z.
+y = sin(x);
+z = x- (x.^3/6);
+
+% Plot results.
+figure;
+plot(x,y,'r',x,z,'REPLACE_WITH_DASH_DASH')
+axis tight;
+grid on;
+
+%% Exercise 5
+
+% NOTE: you must create the M-file ex5.m separately and invoke it here in
+% your main M-file (main file). 
+
+% Print out the code for your created M-file (do NOT submit M-file
+% separately).
+type 'ex5.m' 
+
+% Run your M-fileREPLACE_WITH_DASH_DASHi.e., execute the M-file.
+run 'ex5.m'
+
+%% Exercise 6
+
+%%
+% Part (a)
+
+% Define f as  anonymous function.
+f = @(x,y)(y.^2 + (x*exp(y))/(x.^2+1));
+
+% Evaluate f at the given values of x and y
+
+f(-3,1)
+
+%%
+% Part (b)
+
+% Clear the function f out of the workspace.
+clear f
+
+% Print out f.m contents.
+type 'f.m'
+
+% Evaluate f at the given values of x and y
+
+f(-3,1)
+
+%% The End!!!
+
+##### SOURCE END #####
+--></body></html>
